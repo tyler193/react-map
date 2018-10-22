@@ -20,7 +20,7 @@ class Map extends Component {
 
       //Render google map
       this.map = new google.maps.Map(document.getElementById('google-map'), {
-        zoom: 15,
+        zoom: 13,
         scrollwheel: true,
         center: { lat: venues[0].location.lat, lng: venues[0].location.lng }
       });
