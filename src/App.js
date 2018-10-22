@@ -45,8 +45,14 @@ class App extends Component {
 
   render() {
     return (
-      <div id="google-map">
+      <div>
+        <div id="google-map">
 
+        </div>
+
+        <div id="sidebar">
+
+        </div>
       </div>
     );
   }
