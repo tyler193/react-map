@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
-import './App.css';
-//import { load_google_maps, places } from './utility.js'
-import Map from './components/Map.js'
+import '../App.css';
+import { load_google_maps, places } from '../utility.js'
 
-class App extends Component {
-/*
+class Map extends Component {
+
   componentDidMount() {
     let googleMaps = load_google_maps();
     let loadPlaces = places();
@@ -43,14 +41,14 @@ class App extends Component {
     })
 
   }
-*/
+
   render() {
     return (
-      <div>
-        <Map />
-      </div>
+        <div id="google-map">
+
+        </div>
     );
   }
 }
 
-export default App;
+export default Map;
