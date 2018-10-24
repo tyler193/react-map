@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-//import { load_google_maps, places } from './utility.js'
-import Map from './components/Map.js'
-import Sidebar from './components/Sidebar.js'
+import { load_google_maps, places } from './utility.js'
+//import Map from './components/Map.js'
+//import Sidebar from './components/Sidebar.js'
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ''
+    }
+  }
 
   componentDidMount() {
     let googleMaps = load_google_maps();
@@ -42,24 +49,32 @@ class App extends Component {
         });
 
         //Set animation to markers with timer. Thanks to Ryan Waite on the help :)
-        marker.addEventListener('click', () => {
-          if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-          } else {
-            marker.setAnimation(google.map.Animation.BOUNCE);
-          }
-          setTimeout(() => {marker.setAnimation(null)}, 1000);
-        });
+//       marker.addListener('click', () => {
+//          if (marker.getAnimation() !== null) {
+//            marker.setAnimation(null);
+//          } else {
+//            marker.setAnimation(google.map.Animation.BOUNCE);
+//          }
+//          setTimeout(() => {marker.setAnimation(null)}, 1000);
+//        });
+//        google.maps.event.addListener('click', () => {
+//          this.infowindow.setContent(marker.name);
+//          this.map.setCenter(marker.position);
+//          this.infowindow.open(this.map, marker);
+//          this.map.panBy(0, -125)
+//        });
+
         this.markers.push(marker);
       });
       this.setState({ filteredVens: this.venues });
     })
   }
 
+/*
   itemClick = (venue) => {
     let marker = this.markers.filter(mark => mark.id === venue.id[0]);
-    this.infoWindow.setContent(marker.name);
-    this.infoWindow.open(this.map, marker);
+    this.infowindow.setContent(marker.name);
+    this.infowindow.open(this.map, marker);
     this.map.setCenter(marker.position);
     this.map.panBy(0, -125);
     if (marker.getAnimation() !== null) {
@@ -70,23 +85,30 @@ class App extends Component {
     setTimeout(() => {marker.setAnimation(null) }, 1000);
   }
 
+*/
   //Filters venues as a query is entered into input field
-  filterVens = (query) => {
-    let fil = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+  filterVens(query) {
+    //let fil = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
     this.markers.forEach(marker => {
-      marker.name.toLowerCase().includes(query.toLowerCase()) == true ?
+      marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
       marker.setVisible(true) :
       marker.setVisible(false);
       console.log(marker);
     });
-    this.setState({ filteredVens: fil, query });
+    this.setState({ query });
   }
 
   render() {
     return (
       <div>
-        <Map />
-        <Sidebar />
+        <div id="google-map">
+
+        </div>
+
+        <div id="sidebar">
+        <input value={this.state.query} onChange={(event) => {this.filterVens(event.target.value)}}/>
+
+        </div>
       </div>
     );
   }
