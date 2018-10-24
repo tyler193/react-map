@@ -37,6 +37,7 @@ class Map extends Component {
           name: venue.name,
           animation: google.maps.Animation.DROP
         });
+        this.markers.push(marker);
       });
     })
 
