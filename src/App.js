@@ -49,20 +49,20 @@ class App extends Component {
         });
 
         //Set animation to markers with timer. Thanks to Ryan Waite on the help :)
-//       marker.addListener('click', () => {
-//          if (marker.getAnimation() !== null) {
-//            marker.setAnimation(null);
-//          } else {
-//            marker.setAnimation(google.map.Animation.BOUNCE);
-//          }
-//          setTimeout(() => {marker.setAnimation(null)}, 1000);
-//        });
-//        google.maps.event.addListener('click', () => {
-//          this.infowindow.setContent(marker.name);
-//          this.map.setCenter(marker.position);
-//          this.infowindow.open(this.map, marker);
-//          this.map.panBy(0, -125)
-//        });
+       marker.addListener('click', () => {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+          setTimeout(() => { marker.setAnimation(null) }, 800);
+        });
+
+        //Display infowindow when marker is clicked. Thanks to Ryan for the tips on this as well :)
+        google.maps.event.addListener(marker, 'click', () => {
+          this.infowindow.setContent(marker.name);
+          this.infowindow.open(this.map, marker);
+        });
 
         this.markers.push(marker);
       });

@@ -6,9 +6,9 @@
   position: absolute;
   z-index: 100;
   background: #d5d8dc;
-  width: 300px;
+  width: 250px;
   max-width: 100%;
-  height: calc(100vh);
+  height: 100vh;
   overflow-y: scroll;
   top: 0;
 }
