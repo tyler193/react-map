@@ -42,8 +42,22 @@ class App extends Component {
         });
         this.markers.push(marker);
       });
+      this.setState({ filteredVens: this.venues });
     })
+  }
 
+  itemClick = (venue) => {
+    let marker = this.markers.filter(mark => mark.id === venue.id[0]);
+    this.infoWindow.setContent(marker.name);
+    this.infoWindow.open(this.map, marker);
+    this.map.setCenter(marker.position);
+    this.map.panBy(0, -125);
+    if (marker.getAnimation() !== null) {
+      marker.setAnimation(null);
+    } else {
+      marker.setAnimation(this.google.maps.Animation.BOUNCE);
+    }
+    setTimeout(() => {marker.setAnimation(null) }, 1000);
   }
 
   //Filters venues as a query is entered into input field
