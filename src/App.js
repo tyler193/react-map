@@ -40,6 +40,16 @@ class App extends Component {
           name: venue.name,
           animation: google.maps.Animation.DROP
         });
+
+        //Set animation to markers with timer. Thanks to Ryan Waite on the help :)
+        marker.addEventListener('click', () => {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.map.Animation.BOUNCE);
+          }
+          setTimeout(() => {marker.setAnimation(null)}, 1000);
+        });
         this.markers.push(marker);
       });
       this.setState({ filteredVens: this.venues });
