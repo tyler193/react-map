@@ -24,21 +24,21 @@ class App extends Component {
       loadPlaces
     ]).then(values => {
       let google = values[0];
-      let venues = values[1].response.venues;
+      this.venues = values[1].response.venues;
       this.google = google;
       this.markers = [];
+      this.infowindow = new google.maps.InfoWindow();
 
       //Render google map
       this.map = new google.maps.Map(document.getElementById('google-map'), {
         zoom: 13,
         scrollwheel: true,
-        center: { lat: venues[0].location.lat, lng: venues[0].location.lng }
+        center: { lat: this.venues[0].location.lat, lng: this.venues[0].location.lng }
       });
 
-      this.infowindow = new google.maps.InfoWindow();
 
       //Place marker at each venue
-      venues.forEach(venue => {
+      this.venues.forEach(venue => {
         let marker = new google.maps.Marker({
           position: { lat: venue.location.lat, lng: venue.location.lng },
           map: this.map,
@@ -48,7 +48,8 @@ class App extends Component {
           animation: google.maps.Animation.DROP
         });
 
-        //Set animation to markers with timer. Thanks to Ryan Waite on the help :)
+        //Set animation to markers with timer.
+        //Thanks to Ryan Waite on the help :)
        marker.addListener('click', () => {
           if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
@@ -58,7 +59,8 @@ class App extends Component {
           setTimeout(() => { marker.setAnimation(null) }, 800);
         });
 
-        //Display infowindow when marker is clicked. Thanks to Ryan for the tips on this as well :)
+        //Display infowindow when marker is clicked.
+        //Thanks to Ryan for the tips on this as well :)
         google.maps.event.addListener(marker, 'click', () => {
           this.infowindow.setContent(marker.name);
           this.infowindow.open(this.map, marker);
@@ -71,12 +73,10 @@ class App extends Component {
   }
 
 /*
-  itemClick = (venue) => {
+  listItems(venue) => {
     let marker = this.markers.filter(mark => mark.id === venue.id[0]);
     this.infowindow.setContent(marker.name);
     this.infowindow.open(this.map, marker);
-    this.map.setCenter(marker.position);
-    this.map.panBy(0, -125);
     if (marker.getAnimation() !== null) {
       marker.setAnimation(null);
     } else {
@@ -88,7 +88,7 @@ class App extends Component {
 */
   //Filters venues as a query is entered into input field
   filterVens(query) {
-    //let fil = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+    let fil = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
     this.markers.forEach(marker => {
       marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
       marker.setVisible(true) :
@@ -107,7 +107,14 @@ class App extends Component {
 
         <div id="sidebar">
         <input value={this.state.query} onChange={(event) => {this.filterVens(event.target.value)}}/>
-
+        <br/>
+        {
+          this.state.filteredVens && this.state.filteredVens.length > 0 && this.state.filteredVens.map((venue, index) => (
+            <div className='venue-list'>
+              {venue.name}
+            </div>
+          ))
+        }
         </div>
       </div>
     );
