@@ -95,7 +95,7 @@ class App extends Component {
       marker.setVisible(false);
       console.log(marker);
     });
-    this.setState({ filteredVens: filter });
+    this.setState({ filteredVens: filter, query });
   }
 
   render() {
