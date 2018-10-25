@@ -88,14 +88,14 @@ class App extends Component {
 */
   //Filters venues as a query is entered into input field
   filterVens(query) {
-    let fil = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+    let filter = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
     this.markers.forEach(marker => {
       marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
       marker.setVisible(true) :
       marker.setVisible(false);
       console.log(marker);
     });
-    this.setState({ query });
+    this.setState({ filteredVens: filter });
   }
 
   render() {
@@ -106,11 +106,12 @@ class App extends Component {
         </div>
 
         <div id="sidebar">
-        <input value={this.state.query} onChange={(event) => {this.filterVens(event.target.value)}}/>
+        <p id='search-heading'>Search for Venues</p>
+        <input className='text-input' value={this.state.query} onChange={(event) => {this.filterVens(event.target.value)}}/>
         <br/>
         {
           this.state.filteredVens && this.state.filteredVens.length > 0 && this.state.filteredVens.map((venue, index) => (
-            <div className='venue-list'>
+            <div className='venue-list' key={index}>
               {venue.name}
             </div>
           ))

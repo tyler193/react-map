@@ -13,6 +13,16 @@
   top: 0;
 }
 
+.text-input {
+  width: 70%;
+  margin-left: 35px;
+  border: 1px solid grey;
+}
+
+#search-heading {
+  text-align: center;
+}
+
 .venue-list {
   margin: 10px;
   padding: 10px;
