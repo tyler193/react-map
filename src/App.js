@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import { load_google_maps, places } from './utility.js'
-//import Map from './components/Map.js'
+import Map from './components/Map.js'
 import Sidebar from './components/Sidebar.js'
 
 class App extends Component {
+
 
   constructor(props) {
     super(props);
@@ -13,8 +14,10 @@ class App extends Component {
       query: ''
     }
   }
-
+/*
   componentDidMount() {
+
+
     let googleMaps = load_google_maps();
     let loadPlaces = places();
 
@@ -48,6 +51,7 @@ class App extends Component {
           animation: google.maps.Animation.DROP
         });
 
+
         //Set animation to markers with timer.
         //Thanks to Ryan Waite on the help :)
        marker.addListener('click', () => {
@@ -58,6 +62,7 @@ class App extends Component {
           }
           setTimeout(() => { marker.setAnimation(null) }, 800);
         });
+
 
         //Display infowindow when marker is clicked.
         //Thanks to Ryan for the tips on this as well :)
@@ -100,14 +105,12 @@ class App extends Component {
     }
 
 
-
+*/
 
   render() {
     return (
       <div>
-        <div id="google-map">
-
-        </div>
+        <Map />
 
         <Sidebar listItems={this.listItems}
                  filterVens={this.filterVens}
