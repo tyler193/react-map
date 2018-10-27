@@ -14,7 +14,7 @@ class App extends Component {
       query: ''
     }
   }
-/*
+
   componentDidMount() {
 
 
@@ -105,7 +105,7 @@ class App extends Component {
     }
 
 
-*/
+
 
   render() {
     return (

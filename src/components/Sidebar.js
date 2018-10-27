@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Map from './Map.js';
 import '../App.css';
-import '../App.js';
+import App from '../App.js';
 
 
 class Sidebar extends Component {
