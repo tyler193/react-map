@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { load_google_maps, places } from './utility.js'
 //import Map from './components/Map.js'
-//import Sidebar from './components/Sidebar.js'
+import Sidebar from './components/Sidebar.js'
 
 class App extends Component {
 
@@ -74,7 +74,7 @@ class App extends Component {
 
 
   //Filters venues as a query is entered into input field
-  filterVens(query) {
+  filterVens = (query) => {
     let filter = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
     this.markers.forEach(marker => {
       marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
@@ -85,7 +85,8 @@ class App extends Component {
     this.setState({ filteredVens: filter, query });
   }
 
-  
+
+  //Animates and displays info when list item is clicked
     listItems = (venue) => {
       let marker = this.markers.filter(mark => mark.id === venue.id)[0];
       this.infowindow.setContent(marker.name);
@@ -108,18 +109,11 @@ class App extends Component {
 
         </div>
 
-        <div id="sidebar">
-          <p id='search-heading'>Search for Venues</p>
-          <input className='text-input' value={this.state.query} onChange={(event) => {this.filterVens(event.target.value)}}/>
-        <br/>
-        {
-          this.state.filteredVens && this.state.filteredVens.length > 0 && this.state.filteredVens.map((venue, index) => (
-            <div className='venue-list' key={index} onClick={() => { this.listItems(venue) }}>
-              {venue.name}
-            </div>
-          ))
-        }
-        </div>
+        <Sidebar listItems={this.listItems}
+                 filterVens={this.filterVens}
+                 filteredVens={this.state.filteredVens} />
+
+
       </div>
     );
   }

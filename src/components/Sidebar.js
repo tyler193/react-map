@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Map from './Map.js';
+
 import '../App.css';
-//import { load_google_maps, places } from '../utility.js';
+import '../App.js';
+
 
 class Sidebar extends Component {
   constructor(props) {
@@ -16,14 +17,16 @@ class Sidebar extends Component {
   render() {
     return (
       <div id="sidebar">
-        <input value={this.props.query} onChange={(event) => {this.props.filtVens(event.target.value)}}/>
-        {
-          this.props.filteredVens && this.props.filteredVens.length > 0 && this.state.filteredVens.map((venue, index) => (
-            <div key={index} className='ven-item' onClick={() => { this.props.itemClick(venue) }}>
-              {venue.name}
-              </div>
-          ))
-        }
+        <p id='search-heading'>Search for Venues</p>
+        <input className='text-input' value={this.props.query} onChange={(event) => { this.props.filterVens(event.target.value) }}/>
+      <br/>
+      {
+        this.props.filteredVens && this.props.filteredVens.length > 0 && this.props.filteredVens.map((venue, index) => (
+          <div className='venue-list' key={index} onClick={() => { this.props.listItems(venue) }}>
+            {venue.name}
+          </div>
+        ))
+      }
       </div>
     );
   }
