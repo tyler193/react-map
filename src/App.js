@@ -69,6 +69,7 @@ class App extends Component {
         google.maps.event.addListener(marker, 'click', () => {
           this.infowindow.setContent(marker.name);
           this.infowindow.open(this.map, marker);
+          this.map.setCenter(marker.position);
         });
 
         this.markers.push(marker);
@@ -96,6 +97,7 @@ class App extends Component {
       let marker = this.markers.filter(mark => mark.id === venue.id)[0];
       this.infowindow.setContent(marker.name);
       this.infowindow.open(this.map, marker);
+      this.map.setCenter(marker.position);
       if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
       } else {
