@@ -72,20 +72,7 @@ class App extends Component {
     })
   }
 
-/*
-  listItems(venue) => {
-    let marker = this.markers.filter(mark => mark.id === venue.id[0]);
-    this.infowindow.setContent(marker.name);
-    this.infowindow.open(this.map, marker);
-    if (marker.getAnimation() !== null) {
-      marker.setAnimation(null);
-    } else {
-      marker.setAnimation(this.google.maps.Animation.BOUNCE);
-    }
-    setTimeout(() => {marker.setAnimation(null) }, 1000);
-  }
 
-*/
   //Filters venues as a query is entered into input field
   filterVens(query) {
     let filter = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
@@ -93,10 +80,26 @@ class App extends Component {
       marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
       marker.setVisible(true) :
       marker.setVisible(false);
-      console.log(marker);
+      //console.log(marker);
     });
     this.setState({ filteredVens: filter, query });
   }
+
+  
+    listItems = (venue) => {
+      let marker = this.markers.filter(mark => mark.id === venue.id)[0];
+      this.infowindow.setContent(marker.name);
+      this.infowindow.open(this.map, marker);
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(this.google.maps.Animation.BOUNCE);
+      }
+      setTimeout(() => {marker.setAnimation(null) }, 1000);
+    }
+
+
+
 
   render() {
     return (
@@ -106,12 +109,12 @@ class App extends Component {
         </div>
 
         <div id="sidebar">
-        <p id='search-heading'>Search for Venues</p>
-        <input className='text-input' value={this.state.query} onChange={(event) => {this.filterVens(event.target.value)}}/>
+          <p id='search-heading'>Search for Venues</p>
+          <input className='text-input' value={this.state.query} onChange={(event) => {this.filterVens(event.target.value)}}/>
         <br/>
         {
           this.state.filteredVens && this.state.filteredVens.length > 0 && this.state.filteredVens.map((venue, index) => (
-            <div className='venue-list' key={index}>
+            <div className='venue-list' key={index} onClick={() => { this.listItems(venue) }}>
               {venue.name}
             </div>
           ))
