@@ -1,11 +1,13 @@
 #google-map {
   height: 100vh;
+
+
 }
 
 #sidebar {
   position: absolute;
   z-index: 100;
-  background: #d5d8dc;
+  background: #ffffff;
   width: 250px;
   max-width: 100%;
   height: 100vh;
@@ -28,6 +30,7 @@
   padding: 10px;
   z-index: 100;
   border: 1px solid black;
+  background-color: #f4a142;
 }
 
 
