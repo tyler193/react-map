@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Map from './Map.js';
+//import Map from './Map.js';
 import '../App.css';
-import App from '../App.js';
+//import App from '../App.js';
 
 
 class Sidebar extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+//  constructor(props) {
+//    super(props);
+//  }
 
 
 
