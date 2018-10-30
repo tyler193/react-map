@@ -156,7 +156,12 @@ class App extends Component {
         //Display infowindow when marker is clicked.
         //Thanks to Ryan for the tips on this as well :)
         google.maps.event.addListener(marker, 'click', () => {
-          this.infowindow.setContent(marker.name + `<br/>` + marker.add);
+          if (marker.add === undefined) {
+            this.infowindow.setContent(marker.name);
+          } else {
+            this.infowindow.setContent(marker.name + `<br/>` + marker.add);
+          }
+          //this.infowindow.setContent(marker.name + `<br/>` + marker.add);
           this.infowindow.open(this.map, marker);
           this.map.setCenter(marker.position);
         });
