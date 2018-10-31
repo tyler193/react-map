@@ -161,7 +161,6 @@ class App extends Component {
           } else {
             this.infowindow.setContent(marker.name + `<br/>` + marker.add);
           }
-          //this.infowindow.setContent(marker.name + `<br/>` + marker.add);
           this.infowindow.open(this.map, marker);
           this.map.setCenter(marker.position);
         });
@@ -191,7 +190,11 @@ class App extends Component {
   //Animates and displays info when list item is clicked
     listItems = (venue) => {
       let marker = this.markers.filter(mark => mark.id === venue.id)[0];
-      this.infowindow.setContent(marker.name + ' ' + marker.add);
+      if (marker.add === undefined) {
+        this.infowindow.setContent(marker.name);
+      } else {
+        this.infowindow.setContent(marker.name + `<br/>` + marker.add);
+      }
       this.infowindow.open(this.map, marker);
       this.map.setCenter(marker.position);
       if (marker.getAnimation() !== null) {
