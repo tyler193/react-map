@@ -1,6 +1,6 @@
 # React Neighborhood Map
 
-This project was created with create-react-app using Foursquare API and Google Maps API.
+This project was created with create-react-app using Foursquare API and Google Maps API. It is an app that lets you filter local venues and click on markers to display information about the venue.
 
 ## Features
 * Responsive
