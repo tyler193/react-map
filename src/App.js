@@ -141,7 +141,7 @@ class App extends Component {
         });
 
 
-        //Set animation to markers with timer.
+        //Set animation to markers with timer when clicked
         //Thanks to Ryan Waite on the help :)
        marker.addListener('click', () => {
           if (marker.getAnimation() !== null) {
@@ -187,7 +187,7 @@ class App extends Component {
   }
 
 
-  //Animates and displays info when list item is clicked
+  //Animates marker and displays info in infowindow when list item is clicked
     listItems = (venue) => {
       let marker = this.markers.filter(mark => mark.id === venue.id)[0];
       if (marker.add === undefined) {
