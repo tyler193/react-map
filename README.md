@@ -1,4 +1,4 @@
-# React Map
+# React Neighborhood Map
 
 This project was created with create-react-app using Foursquare API and Google Maps API.
 
@@ -20,3 +20,9 @@ This project was created with create-react-app using Foursquare API and Google M
 * run `npm install`
 * run `npm start`
 * go to localhost:3000 in browser
+
+
+
+
+-
+# Tyler Roberts
