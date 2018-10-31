@@ -23,6 +23,5 @@ This project was created with create-react-app using Foursquare API and Google M
 
 
 
-
 -
 # Tyler Roberts
