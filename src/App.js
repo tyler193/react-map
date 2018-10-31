@@ -177,10 +177,12 @@ class App extends Component {
   filterVens = (query) => {
     let filter = this.venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
     this.markers.forEach(marker => {
-      marker.name.toLowerCase().includes(query.toLowerCase()) === true ?
-      marker.setVisible(true) :
-      marker.setVisible(false);
       //console.log(marker);
+      if (marker.name.toLowerCase().includes(query.toLowerCase()) === true) {
+        marker.setVisible(true);
+      } else {
+        marker.setVisible(false);
+      }
     });
     this.setState({ filteredVens: filter, query });
   }
