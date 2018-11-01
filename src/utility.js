@@ -29,4 +29,7 @@ export function places() {
   var apiURL = 'https://api.foursquare.com/v2/venues/search?client_id=KHLLC124YG1RZWMKVV1TZ0RW3GX4S1R4NL1ODFN3S5P5XZBZ&client_secret=Z3FSKLIMJTIGWNRJZRZPARHBQ1IM4SWEOCWOOG2QQTF51JGO&v=20130815%20&limit=50&near=' + city + '&query=' + query + '';
   return fetch(apiURL)
           .then(resp => resp.json())
+          .catch(error => {
+            alert(error + ' Oops. Foursquare data did not load properly');
+          })
 }
