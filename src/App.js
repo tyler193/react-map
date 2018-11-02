@@ -130,13 +130,14 @@ class App extends Component {
 
       //Place marker at each venue & define info
       this.venues.forEach(venue => {
-        //console.log(venue);
+        console.log(venue);
         let marker = new google.maps.Marker({
           position: { lat: venue.location.lat, lng: venue.location.lng },
           map: this.map,
           id: venue.id,
           name: venue.name,
           add: venue.location.address,
+          friends: venue.hereNow.summary,
           animation: google.maps.Animation.DROP
         });
 
@@ -159,7 +160,7 @@ class App extends Component {
           if (marker.add === undefined) {
             this.infowindow.setContent(marker.name);
           } else {
-            this.infowindow.setContent(marker.name + `<br/>` + marker.add);
+            this.infowindow.setContent(marker.name + `<br/>` + marker.add + `<br/>` + marker.friends);
           }
           this.infowindow.open(this.map, marker);
           this.map.setCenter(marker.position);
