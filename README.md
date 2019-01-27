@@ -16,8 +16,8 @@ This project was created with create-react-app using Foursquare API and Google M
 ## How to run project
 * install node.js and npm
 * fork and clone this repo or download zip file
+* inside utility.js file place Google Maps API and Foursquare API keys into designated spots
 * change directory to project folder inside terminal
-* run `npm install`
 * run `npm start`
 * go to localhost:3000 in browser
 
